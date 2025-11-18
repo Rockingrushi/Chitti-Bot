@@ -13,210 +13,191 @@
       font-family: "Poppins", sans-serif;
     }
 
-    /* 🍕 FULL BACKGROUND FOOD IMAGE */
+    /* 🌮 FULL-SCREEN FOOD IMAGE BACKGROUND */
     body {
-      background: url("https://images.unsplash.com/photo-1601312377227-7c40e7c4f06c?auto=format&fit=crop&w=1600&q=80")
-        no-repeat center/cover;
       min-height: 100vh;
+      background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       position: relative;
     }
 
-    /* Dark overlay */
+    /* 🔥 DARK OVERLAY FOR READABILITY */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.55);
       backdrop-filter: blur(2px);
+      z-index: 0;
     }
 
     .container {
       position: relative;
-      z-index: 3;
+      z-index: 2;
       width: 90%;
       max-width: 1100px;
+      padding: 20px;
       display: flex;
-      gap: 30px;
       flex-wrap: wrap;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
     }
 
-    /* GLASS PANEL */
+    /* 🧊 GLASS CARD LEFT */
     .glass-card {
-      flex: 1 1 420px;
-      background: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 24px;
-      padding: 30px 34px;
+      padding: 40px;
+      width: 60%;
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
-    .logo-row {
+    .logo {
+      font-size: 20px;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
     .logo-icon {
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.25);
-      font-size: 22px;
-    }
-
-    .logo-title {
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 32px;
     }
 
     .tag {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 999px;
       background: rgba(255, 255, 255, 0.25);
+      padding: 8px 15px;
+      border-radius: 999px;
       font-size: 12px;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     h1 {
-      font-size: 32px;
-      line-height: 1.2;
-      margin-bottom: 12px;
+      font-size: 38px;
+      line-height: 1.3;
+      margin-bottom: 20px;
     }
 
     h1 span {
-      color: #ffd86b;
+      color: #ffd66b;
     }
 
-    .sub-text {
+    p {
+      width: 90%;
+      margin-bottom: 20px;
+      line-height: 1.6;
       font-size: 14px;
       opacity: 0.9;
-      margin-bottom: 26px;
-      line-height: 1.5;
-      max-width: 430px;
     }
 
-    .btn-main {
-      padding: 12px 24px;
-      background: linear-gradient(135deg, #ff7e41, #ffb25a);
-      color: #000;
+    .btn {
+      background: linear-gradient(135deg, #ff8037, #ffbf47);
       border: none;
-      border-radius: 999px;
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 40px;
       cursor: pointer;
+      color: black;
       font-weight: 600;
-      font-size: 15px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
-      transition: 0.15s ease;
-      margin-bottom: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      margin-bottom: 25px;
     }
 
-    .btn-main:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.55);
-    }
-
-    .chip-group {
-      margin-top: 12px;
+    .chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
 
     .chip {
-      padding: 7px 14px;
-      border-radius: 999px;
       background: rgba(255, 255, 255, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 10px 18px;
+      border-radius: 20px;
       font-size: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: white;
       cursor: pointer;
-      color: #f9f9f9;
-      white-space: nowrap;
     }
 
-    /* RIGHT SIDE - FOOD ASSISTANT FEATURES */
-    .feature-box {
-      flex: 1 1 320px;
-      color: #fff;
-      padding: 10px;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    /* RIGHT CONTENT */
+    .help-box {
+      width: 30%;
+      color: white;
+      text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.7);
     }
 
-    .feature-box h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
+    .help-box h2 {
+      font-size: 26px;
+      margin-bottom: 15px;
     }
 
-    .feature-box ul {
+    .help-box ul {
+      line-height: 2;
       list-style: none;
-      line-height: 1.6;
     }
 
-    .feature-box ul li::before {
-      content: "🍴 ";
+    .help-box ul li::before {
+      content: "🍽️ ";
+      color: #ffd66b;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <!-- LEFT GLASS UI CARD -->
+  <div class="container">
+    <!-- LEFT GLASS CARD -->
     <div class="glass-card">
-      <div class="logo-row">
-        <div class="logo-icon">🍱</div>
-        <div class="logo-title">Chitti – Food Assistant</div>
+      <div class="logo">
+        <span class="logo-icon">🍕</span>  
+        Chitti – Food Assistant
       </div>
 
-      <div class="tag">🤖 AI chat for food orders, recipes & diets</div>
+      <div class="tag">🤖 AI chat for food orders, recipes & diet help</div>
 
       <h1>
-        Hungry? Let <span>Chitti</span> choose your meal.
+        Hungry? Let <span>Chitti</span> choose tonight’s meal.
       </h1>
 
-      <p class="sub-text">
-        Ask about menus, recipes, calorie info, best dishes, offers or delivery questions.
+      <p>
+        Ask about recipes, menus, calorie info, spicy dishes, offers or delivery questions.
         Chitti understands natural language and replies instantly.
       </p>
 
-      <button class="btn-main" id="open-chat">💬 Chat with Chitti</button>
+      <button class="btn" id="open-chat">💬 Chat with Chitti</button>
 
-      <div class="chip-group">
-        <div class="chip">Suggest veg dinner under ₹200</div>
-        <div class="chip">Low calorie breakfast ideas</div>
+      <div class="chips">
         <div class="chip">Best spicy burgers?</div>
-        <div class="chip">Show today’s offers</div>
+        <div class="chip">Veg dinner under 200₹</div>
+        <div class="chip">Low calorie breakfast</div>
+        <div class="chip">Today’s offers</div>
       </div>
     </div>
 
-    <!-- RIGHT: ASSISTANT FEATURES -->
-    <div class="feature-box">
-      <h2>What Chitti can help with 🍕</h2>
+    <!-- RIGHT FEATURES -->
+    <div class="help-box">
+      <h2>What Chitti can help with 🍔</h2>
       <ul>
-        <li>Suggest food based on mood, diet or budget</li>
-        <li>Explain ingredients, spice level & calories</li>
-        <li>Recommend combos, offers & best sellers</li>
-        <li>Answer delivery timing & order FAQs</li>
+        <li>Suggest dishes based on mood or budget</li>
+        <li>Explain ingredients & spice levels</li>
+        <li>Recommend best combos & offers</li>
+        <li>Answer delivery & order FAQs</li>
       </ul>
     </div>
   </div>
 
-  <!-- WATSON CHAT SCRIPT -->
+  <!-- WATSON CHATBOT -->
   <script>
     window.watsonAssistantChatOptions = {
       integrationID: "fc8c418c-4d08-4410-8373-12dee16ec6ae",
@@ -227,6 +208,7 @@
         document.getElementById("open-chat").onclick = () => instance.openWindow();
       }
     };
+
     setTimeout(function () {
       const t = document.createElement("script");
       t.src =
@@ -236,5 +218,6 @@
       document.head.appendChild(t);
     });
   </script>
+
 </body>
 </html>
