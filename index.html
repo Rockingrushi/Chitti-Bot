@@ -1,312 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Chitti Food Assistant</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>Chitti – Food Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Poppins", sans-serif;
     }
 
+    /* 🍕 FULL BACKGROUND FOOD IMAGE */
     body {
+      background: url("https://images.unsplash.com/photo-1601312377227-7c40e7c4f06c?auto=format&fit=crop&w=1600&q=80")
+        no-repeat center/cover;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      /* 🍕 Background food image */
-      background-image: url("https://images.unsplash.com/photo-1604908176997-1251884b08a0?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       position: relative;
     }
 
-    /* Dark overlay for better contrast */
+    /* Dark overlay */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.68),
-        rgba(0, 0, 0, 0.45)
-      );
-      z-index: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(2px);
     }
 
-    .wrapper {
+    .container {
       position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 900px;
-      padding: 20px;
+      z-index: 3;
+      width: 90%;
+      max-width: 1100px;
       display: flex;
+      gap: 30px;
       flex-wrap: wrap;
-      gap: 24px;
       align-items: center;
       justify-content: space-between;
     }
 
-    .content-card {
-      flex: 1 1 320px;
-      padding: 30px 28px;
+    /* GLASS PANEL */
+    .glass-card {
+      flex: 1 1 420px;
+      background: rgba(255, 255, 255, 0.18);
       border-radius: 24px;
-      background: radial-gradient(
-          circle at top left,
-          rgba(255, 255, 255, 0.18),
-          transparent 55%
-        ),
-        rgba(255, 255, 255, 0.13);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 30px 34px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      color: #fff;
     }
 
     .logo-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 18px;
     }
 
     .logo-icon {
       width: 42px;
       height: 42px;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.2);
-      font-size: 24px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      font-size: 22px;
     }
 
-    .logo-text {
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: 0.5px;
+    .logo-title {
+      font-size: 22px;
+      font-weight: 600;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      padding: 5px 11px;
+    .tag {
+      display: inline-block;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      margin-bottom: 14px;
-    }
-
-    .pill span.emoji {
-      font-size: 14px;
+      background: rgba(255, 255, 255, 0.25);
+      font-size: 12px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      margin-bottom: 15px;
     }
 
     h1 {
       font-size: 32px;
       line-height: 1.2;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    h1 span.highlight {
-      color: #ffca6b;
+    h1 span {
+      color: #ffd86b;
     }
 
-    .sub {
-      font-size: 13px;
-      color: #f6f6f6;
-      max-width: 420px;
-      margin-bottom: 22px;
+    .sub-text {
+      font-size: 14px;
       opacity: 0.9;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 26px;
+      line-height: 1.5;
+      max-width: 430px;
     }
 
     .btn-main {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #ff7e41, #ffb25a);
+      color: #000;
       border: none;
-      outline: none;
-      padding: 10px 22px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #ff7c4f, #ffc15a);
-      color: #1b1b1b;
-      font-weight: 600;
-      font-size: 14px;
       cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
-    }
-
-    .btn-main:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 15px 32px rgba(0, 0, 0, 0.6);
-      filter: brightness(1.03);
-    }
-
-    .btn-secondary {
-      border-radius: 999px;
-      border: 1px dashed rgba(255, 255, 255, 0.65);
-      padding: 9px 18px;
-      font-size: 12px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: transparent;
-      color: #ffffff;
-    }
-
-    .chips-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
-      margin-bottom: 5px;
-      opacity: 0.85;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
-    .chip {
-      font-size: 11px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .side-info {
-      flex: 1 1 260px;
-      color: #ffeede;
-      font-size: 12px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
-    }
-
-    .side-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .side-list {
-      list-style: none;
-      line-height: 1.6;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+      transition: 0.15s ease;
       margin-bottom: 16px;
     }
 
-    .side-list li::before {
-      content: "• ";
-      color: #ffca6b;
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.55);
     }
 
-    .side-tag {
-      display: inline-block;
-      font-size: 11px;
-      padding: 5px 9px;
+    .chip-group {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 7px 14px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      font-size: 12px;
+      cursor: pointer;
+      color: #f9f9f9;
+      white-space: nowrap;
     }
 
-    @media (max-width: 780px) {
-      .wrapper {
-        justify-content: center;
-      }
-      .side-info {
-        text-align: left;
-      }
+    /* RIGHT SIDE - FOOD ASSISTANT FEATURES */
+    .feature-box {
+      flex: 1 1 320px;
+      color: #fff;
+      padding: 10px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .feature-box h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .feature-box ul {
+      list-style: none;
+      line-height: 1.6;
+    }
+
+    .feature-box ul li::before {
+      content: "🍴 ";
     }
   </style>
 </head>
+
 <body>
-  <div class="wrapper">
-    <!-- Glass content card -->
-    <div class="content-card">
+  <div class="container">
+
+    <!-- LEFT GLASS UI CARD -->
+    <div class="glass-card">
       <div class="logo-row">
-        <div class="logo-icon">🍛</div>
-        <div class="logo-text">Chitti – Food Assistant</div>
+        <div class="logo-icon">🍱</div>
+        <div class="logo-title">Chitti – Food Assistant</div>
       </div>
 
-      <div class="pill">
-        <span class="emoji">🤖</span>
-        <span>AI chat for orders, menus & diet help</span>
-      </div>
+      <div class="tag">🤖 AI chat for food orders, recipes & diets</div>
 
       <h1>
-        Hungry? Let <span class="highlight">Chitti</span> decide tonight’s meal.
+        Hungry? Let <span>Chitti</span> choose your meal.
       </h1>
 
-      <p class="sub">
-        Ask about best dishes, spicy or healthy options, offers, delivery doubts or quick recipes.
+      <p class="sub-text">
+        Ask about menus, recipes, calorie info, best dishes, offers or delivery questions.
         Chitti understands natural language and replies instantly.
       </p>
 
-      <div class="buttons">
-        <button id="open-chat" class="btn-main">
-          💬 Chat with Chitti now
-        </button>
-        <button class="btn-secondary">
-          ⭐ View today’s popular dishes
-        </button>
-      </div>
+      <button class="btn-main" id="open-chat">💬 Chat with Chitti</button>
 
-      <p class="chips-title">Try quick prompts</p>
-      <div class="chips">
-        <span class="chip">Suggest a cheesy pizza for 2</span>
-        <span class="chip">Veg meal under 250₹</span>
-        <span class="chip">Low-oil dinner ideas</span>
-        <span class="chip">What’s the best burger?</span>
+      <div class="chip-group">
+        <div class="chip">Suggest veg dinner under ₹200</div>
+        <div class="chip">Low calorie breakfast ideas</div>
+        <div class="chip">Best spicy burgers?</div>
+        <div class="chip">Show today’s offers</div>
       </div>
     </div>
 
-    <!-- Side info text on top of background -->
-    <div class="side-info">
-      <div class="side-title">What Chitti can help with 🍕</div>
-      <ul class="side-list">
-        <li>Recommend food based on mood, diet or budget</li>
+    <!-- RIGHT: ASSISTANT FEATURES -->
+    <div class="feature-box">
+      <h2>What Chitti can help with 🍕</h2>
+      <ul>
+        <li>Suggest food based on mood, diet or budget</li>
         <li>Explain ingredients, spice level & calories</li>
-        <li>Answer FAQs about delivery, timings & offers</li>
-        <li>Collect feedback after your meal</li>
+        <li>Recommend combos, offers & best sellers</li>
+        <li>Answer delivery timing & order FAQs</li>
       </ul>
-      <span class="side-tag">Powered by IBM Watson Assistant</span>
     </div>
   </div>
 
-  <!-- Watson Assistant script (your config) -->
+  <!-- WATSON CHAT SCRIPT -->
   <script>
     window.watsonAssistantChatOptions = {
-      integrationID: "fc8c418c-4d08-4410-8373-12dee16ec6ae", // The ID of this integration.
-      region: "eu-de", // The region your integration is hosted in.
-      serviceInstanceID: "b61a3167-7711-472f-986d-559a44840d62", // The ID of your service instance.
+      integrationID: "fc8c418c-4d08-4410-8373-12dee16ec6ae",
+      region: "eu-de",
+      serviceInstanceID: "b61a3167-7711-472f-986d-559a44840d62",
       onLoad: async (instance) => {
-        await instance.render(); // load floating chat
-        const btn = document.getElementById("open-chat");
-        if (btn) {
-          btn.addEventListener("click", () => {
-            instance.openWindow(); // open chat when main button clicked
-          });
-        }
+        await instance.render();
+        document.getElementById("open-chat").onclick = () => instance.openWindow();
       }
     };
-
     setTimeout(function () {
       const t = document.createElement("script");
       t.src =
