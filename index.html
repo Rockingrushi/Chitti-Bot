@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chitti Food Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffe8c2, #ffd5e5);
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .app-wrapper {
+      max-width: 1100px;
+      width: 100%;
+      background: #ffffffdd;
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      overflow: hidden;
+    }
+
+    @media (max-width: 850px) {
+      .app-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .left {
+      padding: 32px 36px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ff8a5c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff6ec;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: #ff8a5c;
+      margin-bottom: 14px;
+      border: 1px solid #ffd0ad;
+    }
+
+    .tag span.emoji {
+      font-size: 16px;
+    }
+
+    h1 {
+      font-size: 32px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    h1 span.highlight {
+      color: #ff5a5f;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 22px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff7b54, #ffb547);
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(255, 112, 67, 0.35);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(255, 112, 67, 0.45);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px dashed #ff8a5c;
+      background: #fff;
+      padding: 10px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #ff8a5c;
+    }
+
+    .chips-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .chip {
+      font-size: 12px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid #ffd5b7;
+      background: #fff9f2;
+      color: #444;
+      cursor: pointer;
+    }
+
+    .chip:hover {
+      background: #ffe6cc;
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: #777;
+      margin-top: 10px;
+    }
+
+    .right {
+      padding: 24px 24px 28px;
+      background: radial-gradient(circle at top left, #ff9a76 0, #ffeed2 40%, #ffe4f1 85%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      background: #ffffffdd;
+      border-radius: 18px;
+      padding: 14px 14px 12px;
+      font-size: 12px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      background: #ffe7cf;
+      color: #9a4b00;
+      padding: 3px 8px;
+      border-radius: 999px;
+      margin-left: auto;
+    }
+
+    .examples {
+      list-style: none;
+      margin-top: 4px;
+    }
+
+    .examples li {
+      margin: 4px 0;
+      display: flex;
+      gap: 4px;
+      align-items: flex-start;
+    }
+
+    .examples li span.icon {
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      font-size: 11px;
+      border-radius: 999px;
+      background: #fff3eb;
+      padding: 4px 8px;
+    }
+
+    .mini-footer {
+      font-size: 11px;
+      margin-top: auto;
+      text-align: center;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- LEFT SIDE: Text + buttons -->
+    <div class="left">
+      <div class="logo">
+        <div class="logo-icon">🍽️</div>
+        <div class="logo-text">Chitti Food Assistant</div>
+      </div>
+
+      <div class="tag">
+        <span class="emoji">🤖</span>
+        <span>Smart AI chatbot for food lovers</span>
+      </div>
+
+      <h1>
+        Order smarter, eat better with
+        <span class="highlight">Chitti</span> 🍕
+      </h1>
+
+      <p class="subtitle">
+        Ask Chitti anything about menus, offers, calorie info, recipes or best food
+        suggestions around you. Chat in natural language — no app download needed.
+      </p>
+
+      <div class="btn-row">
+        <button id="open-chat" class="btn-primary">
+          💬 Chat with Chitti
+        </button>
+        <button class="btn-ghost">
+          📜 View today’s specials
+        </button>
+      </div>
+
+      <p class="chips-title">Try asking:</p>
+      <div class="chips">
+        <div class="chip">Suggest a veg dinner under 300₹</div>
+        <div class="chip">Show me today’s combo offers</div>
+        <div class="chip">Low calorie breakfast ideas</div>
+        <div class="chip">Track my last order</div>
+      </div>
+
+      <p class="footer-note">
+        Tip: Click <strong>“Chat with Chitti”</strong> — it will open the Watson chat widget.
+      </p>
+    </div>
+
+    <!-- RIGHT SIDE: Preview cards / info -->
+    <div class="right">
+      <div class="card">
+        <div class="card-title">
+          🍱 Quick food help
+          <span class="pill">Live with Watson</span>
+        </div>
+        <ul class="examples">
+          <li><span class="icon">•</span><span>“What can I eat under 500 calories?”</span></li>
+          <li><span class="icon">•</span><span>“Suggest a spicy pizza for 2 people.”</span></li>
+          <li><span class="icon">•</span><span>“Do you have Jain or vegan options?”</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          🧠 What Chitti can do
+        </div>
+        <div class="badge-row">
+          <div class="badge">Menu guidance</div>
+          <div class="badge">Diet suggestions</div>
+          <div class="badge">Offer & deals</div>
+          <div class="badge">Order FAQs</div>
+          <div class="badge">Feedback collection</div>
+        </div>
+      </div>
+
+      <div class="mini-footer">
+        Powered by IBM Watson Assistant · Designed for your food chatbot 🍔
+      </div>
+    </div>
+  </div>
+
+  <!-- 👉 Watson Assistant script (your code) -->
+  <script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "fc8c418c-4d08-4410-8373-12dee16ec6ae", // The ID of this integration.
+      region: "eu-de", // The region your integration is hosted in.
+      serviceInstanceID: "b61a3167-7711-472f-986d-559a44840d62", // The ID of your service instance.
+      onLoad: async (instance) => {
+        // Render the floating chat button
+        await instance.render();
+
+        // Hook our custom button to open the chat window
+        const btn = document.getElementById("open-chat");
+        if (btn) {
+          btn.addEventListener("click", () => {
+            instance.openWindow();
+          });
+        }
+      }
+    };
+
+    setTimeout(function () {
+      const t = document.createElement("script");
+      t.src =
+        "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+        (window.watsonAssistantChatOptions.clientVersion || "latest") +
+        "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
+  </script>
+</body>
+</html>
